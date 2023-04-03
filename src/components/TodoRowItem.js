@@ -17,11 +17,6 @@ function TodoRowItem() {
 
     for (let item of todos) {
         return (
-          // <tr>
-          //   <th scope="row">{rowNumber}</th>
-          //   <td>{rowDescription}</td>
-          //   <td>{rowOwner}</td>
-          // </tr>
           <tr>
             <th scope="row">{item.rowNumber}</th>
             <td>{item.rowDescription}</td>

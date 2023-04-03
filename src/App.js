@@ -2,7 +2,8 @@ import './App.css';
 import TodoTable from './components/TodoTable';
 
 const todosInFile = [
-  {rowNumber : 3, rowDescription: "Feed yourself", rowOwner: "Eric"}
+  {rowNumber : 3, rowDescription: "Feed yourself", rowOwner: "Eric"},
+  {rowNumber : 4, rowDescription: "Feed the world", rowOwner: "Eric"}
 ]
 
 function App() {
@@ -11,8 +12,13 @@ function App() {
       <div className="card">
         <div className="card-header">Your Todos</div>
         <div className="card-body">
-        <TodoTable todosInFile = {todosInFile}
-         />
+        <TodoTable 
+        
+        
+        todosInFile = {todosInFile}
+        
+        
+        />
         </div>
       </div>
     </div>
@@ -20,4 +26,4 @@ function App() {
 }
 
 
-        export default App;
+export default App;

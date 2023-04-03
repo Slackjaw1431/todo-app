@@ -17,11 +17,14 @@ function TodoTable(props){
             <td>Feed Cat</td>
             <td>Eric</td>
           </tr>
-          <tr>
-            <th scope="row">{props.todosInFile[0].rowNumber}</th>
-            <td>{props.todosInFile[0].rowDescription}</td>
-            <td>{props.todosInFile[0].rowOwner}</td>
-          </tr>
+          {props.todosInFile.map((todoInFile) => (
+            <tr>
+              <th scope="row">{todoInFile.rowNumber}</th>
+              <td>{todoInFile.rowDescription}</td>
+              <td>{todoInFile.rowOwner}</td>
+              {/* //ignore hihglight, just trying out things, better to use a method */}
+            </tr>
+          ))}
         </tbody>
       </table>
     );
