@@ -1,10 +1,6 @@
 function TodoRowItem() {
     //must return only one parent
 
-    // const rowNumber = 1;
-    // const rowDescription = "Feed Dog";
-    // const rowOwner = "Eric";
-
     const item = {
         rowNumber: 1,
         rowDescription: "Feed Dog",
