@@ -6,11 +6,13 @@ import NewTodoForm from './components/NewTodoForm';
 function App() {
 
   const [todos, setTodos] = useState([
-    { rowNumber: 1, rowDescription: "Feed Dog", rowOwner: "Eric"},
-    { rowNumber: 2, rowDescription: "Feed Cat", rowOwner: "Eric"},
-    { rowNumber: 3, rowDescription: "Feed yourself", rowOwner: "Eric" },
-    { rowNumber: 4, rowDescription: "Feed the world", rowOwner: "Eric" },
+    { rowNumber: 1, rowDescription: "Feed Dog", rowOwner: "Homer" },
+    { rowNumber: 2, rowDescription: "Feed Cat", rowOwner: "Homer" },
+    { rowNumber: 3, rowDescription: "Feed yourself", rowOwner: "Homer" },
+    { rowNumber: 4, rowDescription: "Feed the world", rowOwner: "Homer" },
   ]);
+
+  const [showAddTodo, setShowAddTodo] = useState(false);
 
   const addTodo = (description, owner) => {
     let rowNumber = 0;
@@ -42,16 +44,21 @@ function App() {
       <div className="card">
         <div className="card-header">Your Todos</div>
         <div className="card-body">
-          <TodoTable todos={todos}  deleteTodo = {deleteTodo} />
-          <button className="btn btn-primary" onClick='NewTodoForm'>
-            Add new Todo
+          <TodoTable todos={todos} deleteTodo={deleteTodo} />
+          <button
+            className="btn btn-primary"
+            onClick={() => setShowAddTodo(!showAddTodo)}
+          >
+          {showAddTodo ? 'Close New Todo' : 'Add New Todo'}  
           </button>
-          <NewTodoForm addTodo={addTodo}></NewTodoForm>
+          {showAddTodo && //if its true and then render
+           <NewTodoForm addTodo={addTodo}/>
+          }
           {/* key value pair */}
         </div>
       </div>
     </div>
-   );
+  );
   }
 
 export default App;
