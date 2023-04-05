@@ -8,22 +8,18 @@ function TodoTable(props){
             <th scope="col">#</th>
             <th scope="col">Description</th>
             <th scope="col">Owner</th>
+            <th scope="col">Done</th>
           </tr>
         </thead>
         <tbody>
-          <TodoRowItem />
-          <tr>
-            <th scope="row">2</th>
-            <td>Feed Cat</td>
-            <td>Eric</td>
-          </tr>
-          {props.todosInFile.map((todoInFile) => (
-            <tr>
-              <th scope="row">{todoInFile.rowNumber}</th>
-              <td>{todoInFile.rowDescription}</td>
-              <td>{todoInFile.rowOwner}</td>
-              {/* //ignore hihglight, just trying out things, better to use a method */}
-            </tr>
+          {props.todos.map((todos) => (
+            <TodoRowItem
+              key={todos.rowNumber}
+              rowNumber={todos.rowNumber}
+              rowDescription={todos.rowDescription}
+              rowOwner={todos.rowOwner}
+              deleteTodo={props.deleteTodo}
+            />
           ))}
         </tbody>
       </table>

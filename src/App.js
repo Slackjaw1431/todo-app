@@ -1,84 +1,57 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import './App.css';
 import TodoTable from './components/TodoTable';
-
-// const todosInFile = [
-//   {rowNumber : 3, rowDescription: "Feed yourself", rowOwner: "Eric"},
-//   {rowNumber : 4, rowDescription: "Feed the world", rowOwner: "Eric"}
-// ]
-
+import NewTodoForm from './components/NewTodoForm';
 
 function App() {
-  
-  const [todosInFile, setTodos] = useState([
+
+  const [todos, setTodos] = useState([
+    { rowNumber: 1, rowDescription: "Feed Dog", rowOwner: "Eric"},
+    { rowNumber: 2, rowDescription: "Feed Cat", rowOwner: "Eric"},
     { rowNumber: 3, rowDescription: "Feed yourself", rowOwner: "Eric" },
     { rowNumber: 4, rowDescription: "Feed the world", rowOwner: "Eric" },
   ]);
 
-  let counter = todosInFile.length+2;
+  const addTodo = (description, owner) => {
+    let rowNumber = 0;
 
-  // const addTodo = () => {
-  //   if (todosInFile.length > 0) {
-  //     const newTodo = {
-  //       rowNumber: ++counter,
-  //       rowDescription: "Feed the universe",
-  //       rowOwner: "Eric",
-  //     };
-  //     // todosInFile.push(newTodo);
-  //     setTodos(todosInFile => [...todosInFile, newTodo])
-  //     console.log(todosInFile);
-  //   }
-  // };
-
-  function addTodo() {
-    if(counter <= 4){
-      addTodoSmall();
+    if (todos.length > 0) {
+       rowNumber = todos[todos.length - 1].rowNumber + 1;
     }
-    else if (counter >= 5 && counter < 6){
-      addTodoBig();
+    else {
+      rowNumber = 1;
     }
-
+    const newTodo = {
+      rowNumber : rowNumber,
+      rowDescription: description,
+      rowOwner: owner
+    };
+    setTodos(todos => [...todos, newTodo])
+    console.log(todos);
   }
 
-  function addTodoBig() {
-    let newTodo = {
-      rowNumber: ++counter,
-      rowDescription: "Feed Galactus",
-      rowOwner: "Eric",
-    };
-    // todosInFile.push(newTodo);
-    setTodos((todosInFile) => [...todosInFile, newTodo]);
-    console.log(todosInFile);
-
+  const deleteTodo = (deleteTodoRowNumber) => {
+    let filtered = todos.filter(function (value) {
+      return value.rowNumber != deleteTodoRowNumber;
+    });
+    setTodos(filtered);
   }
-
-  function addTodoSmall() {
-    let newTodo = {
-      rowNumber: ++counter,
-      rowDescription: "Feed the universe",
-      rowOwner: "Eric",
-    };
-    // todosInFile.push(newTodo);
-    setTodos((todosInFile) => [...todosInFile, newTodo]);
-    console.log(todosInFile);
-
-    }
 
   return (
-
     <div className="mt-5 container">
       <div className="card">
         <div className="card-header">Your Todos</div>
         <div className="card-body">
-        <TodoTable 
-          todosInFile = {todosInFile}
-        />
-        <button className='btn btn-primary' onClick={addTodo}>Add new Todo</button>
+          <TodoTable todos={todos}  deleteTodo = {deleteTodo} />
+          <button className="btn btn-primary" onClick='NewTodoForm'>
+            Add new Todo
+          </button>
+          <NewTodoForm addTodo={addTodo}></NewTodoForm>
+          {/* key value pair */}
         </div>
       </div>
     </div>
-  );
-}
-
+   );
+  }
 
 export default App;
