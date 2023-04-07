@@ -1,13 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-export const NewTodoForm: React.FC<{addTodo: Function }> = (props) => {
-
+export const NewTodoForm: React.FC<{ addTodo: Function }> = (props) => {
   const [description, setDescription] = useState("");
 
   const [owner, setOwner] = useState("");
 
   const submitTodo = () => {
-    if (description != "" && owner != "") {
+    if (description !== "" && owner !== "") {
       props.addTodo(description, owner);
       setDescription("");
       setOwner("");
@@ -48,4 +47,4 @@ export const NewTodoForm: React.FC<{addTodo: Function }> = (props) => {
       </form>
     </div>
   );
-}
+};
